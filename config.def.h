@@ -107,6 +107,7 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer set Master 2%- && volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1) && amixer set Master unmute" ) },
         { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle && if amixer get Master | grep -Fq '[off]'; then volnoti-show -m; else volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1); fi" ) },
         { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 2%+ && volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1) && amixer set Master unmute") },
+	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S, spawn, SHCMD("~/Scripts/wScreenshot") }, 	
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
