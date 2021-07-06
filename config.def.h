@@ -104,9 +104,9 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,           SHCMD("~/Scripts/stop") },
-	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("amixer set Master 2%- && volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1) && amixer set Master unmute" ) },
-        { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle && if amixer get Master | grep -Fq '[off]'; then volnoti-show -m; else volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1); fi" ) },
-        { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 2%+ && volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1) && amixer set Master unmute") },
+	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("~/Scripts/volume.sh down" ) },
+        { 0, XF86XK_AudioMute, spawn, SHCMD("~/Scripts/volume.sh mute" ) },
+        { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("~/Scripts/volume.sh up") },
 	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S, spawn, SHCMD("~/Scripts/wScreenshot") }, 	
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
