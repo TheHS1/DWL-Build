@@ -105,8 +105,10 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,           SHCMD("~/Scripts/stop") },
 	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("~/Scripts/volume.sh down" ) },
-        { 0, XF86XK_AudioMute, spawn, SHCMD("~/Scripts/volume.sh mute" ) },
         { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("~/Scripts/volume.sh up") },
+        { 0, XF86XK_AudioMute, spawn, SHCMD("~/Scripts/volume.sh mute" ) },
+        { 0, XF86XK_MonBrightnessDown,spawn, SHCMD("~/Scripts/backlight down") },
+        { 0, XF86XK_MonBrightnessUp,  spawn, SHCMD("~/Scripts/backlight up") },
 	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S, spawn, SHCMD("~/Scripts/wScreenshot") }, 	
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
