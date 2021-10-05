@@ -1,6 +1,6 @@
 /* appearance */
 static const int sloppyfocus        = 1;  /* focus follows mouse */
-static const unsigned int borderpx  = 1;  /* border pixel of windows */
+static const unsigned int borderpx  = 2;  /* border pixel of windows */
 static const float rootcolor[]      = {0.3, 0.3, 0.3, 1.0};
 static const float bordercolor[]    = {0.5, 0.5, 0.5, 1.0};
 static const float focuscolor[]     = {1.0, 0.0, 0.0, 1.0};
@@ -32,6 +32,8 @@ static const MonitorRule monrules[] = {
 	/* example of a HiDPI laptop monitor:
 	{ "eDP-1",    0.5,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
 	*/
+	{ "HDMI-A-1",    0.55,  1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
+	{ "eDP-1",    0.55,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 1920, 0 },
 	/* defaults */
 	{ NULL,       0.55, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
 };
@@ -51,7 +53,7 @@ static const int repeat_delay = 600;
 static const int tap_to_click = 1;
 static const int natural_scrolling = 0;
 
-#define MODKEY WLR_MODIFIER_ALT
+#define MODKEY WLR_MODIFIER_LOGO
 #define TAGKEYS(KEY,SKEY,TAG) \
 	{ MODKEY,                    KEY,            view,            {.ui = 1 << TAG} }, \
 	{ MODKEY|WLR_MODIFIER_CTRL,  KEY,            toggleview,      {.ui = 1 << TAG} }, \
@@ -62,9 +64,10 @@ static const int natural_scrolling = 0;
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "alacritty", NULL };
+static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "bemenu-run", NULL };
 
+#include <X11/XF86keysym.h>
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
@@ -84,7 +87,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      togglefloating, {0} },
-	{ MODKEY, 					 XKB_KEY_e,    		togglefullscreen, {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_F,    	 togglefullscreen, {0} },
 	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
 	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
@@ -100,7 +103,14 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_7, XKB_KEY_ampersand,                  6),
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          quit,           {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,           SHCMD("~/Scripts/stop") },
+	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("~/Scripts/volume.sh down" ) },
+        { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("~/Scripts/volume.sh up") },
+        { 0, XF86XK_AudioMute, spawn, SHCMD("~/Scripts/volume.sh mute" ) },
+        { 0, XF86XK_MonBrightnessDown,spawn, SHCMD("~/Scripts/backlight down") },
+        { 0, XF86XK_MonBrightnessUp,  spawn, SHCMD("~/Scripts/backlight up") },
+	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S, spawn, SHCMD("~/Scripts/wScreenshot") }, 	
+	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_X, spawn, SHCMD("swaylock -i ~/Downloads/ArchWallpaper.jpg") }, 	
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
