@@ -66,6 +66,7 @@ static const int natural_scrolling = 0;
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "bemenu-run", NULL };
+static const char *browsercmd[] = { "qutebrowser", NULL };
 
 #include <X11/XF86keysym.h>
 static const Key keys[] = {
@@ -103,6 +104,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_7, XKB_KEY_ampersand,                  6),
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
+	// Fix this at some point
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          spawn,           SHCMD("~/Scripts/stop") },
 	{ 0, XF86XK_AudioLowerVolume, spawn, SHCMD("~/Scripts/volume.sh down" ) },
         { 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("~/Scripts/volume.sh up") },
@@ -111,6 +113,9 @@ static const Key keys[] = {
         { 0, XF86XK_MonBrightnessUp,  spawn, SHCMD("~/Scripts/backlight up") },
 	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S, spawn, SHCMD("~/Scripts/wScreenshot") }, 	
 	{MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_X, spawn, SHCMD("swaylock -i ~/Downloads/ArchWallpaper.jpg") }, 	
+	{ MODKEY,                    XKB_KEY_q,          spawn,          {.v = browsercmd} },
+	{ MODKEY,                    XKB_KEY_w,      spawn,          SHCMD("dunstctl close-all") },
+	{ MODKEY,                    XKB_KEY_grave,      spawn,          SHCMD("dunstctl history-pop") },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
