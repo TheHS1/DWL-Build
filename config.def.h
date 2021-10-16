@@ -115,6 +115,8 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_q,                spawn,            {.v = browsercmd} },
 	{ MODKEY,                    XKB_KEY_w,      	       spawn,            SHCMD("dunstctl close-all") },
 	{ MODKEY,                    XKB_KEY_grave,            spawn,            SHCMD("dunstctl history-pop") },
+	{ MODKEY,                    XKB_KEY_e,                spawn,            SHCMD("~/Scripts/timer") },
+
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
