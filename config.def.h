@@ -14,6 +14,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       0,            1,           -1 },
 	{ "firefox",  NULL,       1 << 8,       0,           -1 },
 	*/
+	{ "discord",  NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
