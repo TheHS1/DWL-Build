@@ -34,7 +34,7 @@ static const MonitorRule monrules[] = {
 	{ "eDP-1",    0.5,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
 	*/
 	{ "HDMI-A-1",    0.55,  1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
-	{ "eDP-1",    0.55,  1,      2,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 1920, 0 },
+	{ "eDP-1",    0.55,  1,      1.75,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 1920, 0 },
 	/* defaults */
 	{ NULL,       0.55, 1,      1,    &layouts[0], WL_OUTPUT_TRANSFORM_NORMAL, 0, 0 },
 };
@@ -117,6 +117,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_w,      	       spawn,            SHCMD("dunstctl close-all") },
 	{ MODKEY,                    XKB_KEY_grave,            spawn,            SHCMD("dunstctl history-pop") },
 	{ MODKEY,                    XKB_KEY_e,                spawn,            SHCMD("~/Scripts/timer") },
+	{ MODKEY,                    XKB_KEY_n,                spawn,            SHCMD("foot nvim ~/vimwiki/index.wiki") },
 
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
