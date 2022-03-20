@@ -117,7 +117,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_w,      	       spawn,            SHCMD("dunstctl close-all") },
 	{ MODKEY,                    XKB_KEY_grave,            spawn,            SHCMD("dunstctl history-pop") },
 	{ MODKEY,                    XKB_KEY_e,                spawn,            SHCMD("~/Scripts/timer") },
-	{ MODKEY,                    XKB_KEY_n,                spawn,            SHCMD("foot nvim ~/vimwiki/index.wiki") },
+	{ MODKEY,                    XKB_KEY_n,                spawn,            SHCMD("(foot nvim ~/vimwiki/index.wiki &) > /dev/null 2>&1") },
 
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
