@@ -152,6 +152,7 @@ typedef struct {
 	struct wl_listener surface_commit;
 
 	struct wlr_box geo;
+	bool mapped;
 } LayerSurface;
 
 typedef struct {
@@ -759,8 +760,16 @@ commitlayersurfacenotify(struct wl_listener *listener, void *data)
 	struct wlr_output *wlr_output = wlr_layer_surface->output;
 	Monitor *m;
 
+<<<<<<< HEAD
 	wlr_scene_node_reparent(layersurface->scene,
 			layers[wlr_layer_surface->current.layer]);
+=======
+	if (wlr_layer_surface->current.committed == 0 &&
+		layersurface->mapped == wlr_layer_surface->mapped)
+		return;
+
+	layersurface->mapped = wlr_layer_surface->mapped;
+>>>>>>> layerFix
 
 	if (!wlr_output)
 		return;
