@@ -16,6 +16,7 @@ dwl is not meant to provide every feature under the sun. Instead, like dwm, it s
 - Configurable HiDPI/multi-DPI support
 - Provide information to external status bars via stdout/stdin
 - Urgency hints via xdg-activate protocol
+- Support screen lockers via input-inhibitor protocol
 - Various Wayland protocols
 - XWayland support as provided by wlroots (can be enabled in `config.mk`)
 - Zero flickering - Wayland users naturally expect that "every frame is perfect"

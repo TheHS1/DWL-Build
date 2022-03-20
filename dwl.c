@@ -22,6 +22,7 @@
 #include <wlr/types/wlr_export_dmabuf_v1.h>
 #include <wlr/types/wlr_gamma_control_v1.h>
 #include <wlr/types/wlr_input_device.h>
+#include <wlr/types/wlr_input_inhibitor.h>
 #include <wlr/types/wlr_idle.h>
 #include <wlr/types/wlr_layer_shell_v1.h>
 #include <wlr/types/wlr_keyboard.h>
@@ -303,6 +304,7 @@ static struct wlr_xdg_activation_v1 *activation;
 static struct wl_list clients; /* tiling order */
 static struct wl_list fstack;  /* focus order */
 static struct wlr_idle *idle;
+static struct wlr_input_inhibit_manager *input_inhibit_mgr;
 static struct wlr_layer_shell_v1 *layer_shell;
 static struct wlr_output_manager_v1 *output_mgr;
 static struct wlr_presentation *presentation;
@@ -1268,10 +1270,12 @@ keypress(struct wl_listener *listener, void *data)
 
 	wlr_idle_notify_activity(idle, seat);
 
-	/* On _press_, attempt to process a compositor keybinding. */
-	if (event->state == WL_KEYBOARD_KEY_STATE_PRESSED)
-		for (i = 0; i < nsyms; i++)
-			handled = keybinding(mods, syms[i]) || handled;
+	/* On _press_ if there is no active screen locker,
+	 * attempt to process a compositor keybinding. */
+	if (!input_inhibit_mgr->active_inhibitor)
+		if (event->state == WL_KEYBOARD_KEY_STATE_PRESSED)
+			for (i = 0; i < nsyms; i++)
+				handled = keybinding(mods, syms[i]) || handled;
 
 	if (!handled) {
 		/* Pass unhandled keycodes along to the client. */
@@ -1921,6 +1925,8 @@ setup(void)
 
 	xdg_shell = wlr_xdg_shell_create(dpy);
 	wl_signal_add(&xdg_shell->events.new_surface, &new_xdg_surface);
+
+	input_inhibit_mgr = wlr_input_inhibit_manager_create(dpy);
 
 	/* Use decoration protocols to negotiate server-side decorations */
 	wlr_server_decoration_manager_set_default_mode(
