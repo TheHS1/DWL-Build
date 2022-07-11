@@ -65,7 +65,7 @@ static const int natural_scrolling = 0;
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "foot", NULL };
+static const char *termcmd[] = { "alacritty", NULL };
 static const char *menucmd[] = { "bemenu-run", NULL };
 static const char *browsercmd[] = { "qutebrowser", NULL };
 
@@ -117,7 +117,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_w,      	       spawn,            SHCMD("dunstctl close-all") },
 	{ MODKEY,                    XKB_KEY_grave,            spawn,            SHCMD("dunstctl history-pop") },
 	{ MODKEY,                    XKB_KEY_e,                spawn,            SHCMD("~/Scripts/timer") },
-	{ MODKEY,                    XKB_KEY_n,                spawn,            SHCMD("(foot nvim ~/vimwiki/index.wiki &) > /dev/null 2>&1") },
+	{ MODKEY,                    XKB_KEY_n,                spawn,            SHCMD("(alacritty nvim ~/vimwiki/index.wiki &) > /dev/null 2>&1") },
 
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
