@@ -11,6 +11,9 @@ static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
 /* pointer constraints */
 static const int allow_constrain      = 1;
 
+/* cursor warping */
+static const bool cursor_warp = true;
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
