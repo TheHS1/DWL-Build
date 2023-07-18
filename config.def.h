@@ -50,9 +50,9 @@ static const struct xkb_rule_names xkb_rules = {
     /* example:
        .options = "ctrl:nocaps",
        */
-    .options = "caps:escape",
-    .layout = "us",
-    .variant = "colemak",
+    .options = "caps:escape,grp:shifts_toggle",
+    .layout = "us, us",
+    .variant = "colemak_dh,",
 
 };
 
