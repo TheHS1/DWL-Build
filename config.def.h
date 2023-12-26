@@ -165,6 +165,7 @@ static const Key keys[] = {
     { MODKEY,                    XKB_KEY_e,           spawn,         SHCMD("~/Scripts/timer") },
     { MODKEY,                    XKB_KEY_n,           spawn,         SHCMD("(foot nvim ~/vimwiki/index.wiki &) > /dev/null 2>&1") },
     { MODKEY,                    XKB_KEY_r,           spawn,         SHCMD("(foot sudo systemctl restart wpa_supplicant@wlan0.service && exit)") },
+    { MODKEY,                    XKB_KEY_b,           spawn,         SHCMD("dwlb -toggle-visibility all") },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
